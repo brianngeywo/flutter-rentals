@@ -1,0 +1,6 @@
+must add to property app
+
+add chats so users can chat directly with agents
+notifications
+add property reviews
+create a different app for agents
