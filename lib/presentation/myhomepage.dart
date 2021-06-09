@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:homeland/constants/my_constants.dart';
+import 'package:homeland/presentation/pages/chat_list_screen.dart';
 import 'package:homeland/presentation/pages/create_rental_listing_page.dart';
 // import 'package:homeland/presentation/pages/add_listing_image_page.dart';
 // import 'package:homeland/presentation/pages/chat_list_screen.dart';
@@ -19,8 +21,8 @@ class _MyHomePageState extends State<MyHomePage> {
   var _currentIndex = 0;
   final List<Widget> _navpages = [
     const RentalsListPage(),
-    // ChatsListScreen(),
     CreateRentalListingPage(),
+    const ChatsListScreen(),
     const SearchRentalsPage(),
     ProfilePage(),
   ];
@@ -37,75 +39,77 @@ class _MyHomePageState extends State<MyHomePage> {
           SalomonBottomBarItem(
             icon: const Icon(
               Icons.home,
-              color: Colors.black,
+              color: Colors.teal,
             ),
             title: const Text(
               "Rentals",
               style: TextStyle(
-                color: Colors.black,
+                color: Colors.teal,
               ),
             ),
-            selectedColor: Colors.blue.shade700,
+            selectedColor: backgroundColor,
           ),
-
-          /// Chats
-          // SalomonBottomBarItem(
-          //   icon: const Icon(
-          //     Icons.chat,
-          //     color: Colors.black,
-          //   ),
-          //   title: const Text(
-          //     "Chats",
-          //     style: TextStyle(
-          //       color: Colors.black,
-          //     ),
-          //   ),
-          //   selectedColor: Colors.blue.shade700,
-          // ),
 
           /// create post
           SalomonBottomBarItem(
             icon: const Icon(
               Icons.create,
-              color: Colors.black,
+              color: Colors.teal
+              ,
             ),
             title: const Text(
-              "add rental",
+              " Post",
               style: TextStyle(
-                color: Colors.black,
+                color: Colors.teal,
               ),
             ),
-            selectedColor: Colors.blue.shade700,
+            selectedColor: backgroundColor,
+          ),
+
+          /// Chats
+          SalomonBottomBarItem(
+            icon: const Icon(
+              Icons.chat,
+              color: Colors.teal,
+            ),
+            title: const Text(
+              "Chats",
+              style: TextStyle(
+                color: Colors.teal,
+              ),
+            ),
+            selectedColor: backgroundColor,
           ),
 
           /// Search
           SalomonBottomBarItem(
             icon: const Icon(
               Icons.search,
-              color: Colors.black,
+              color: Colors.teal,
             ),
             title: const Text(
               "Search",
               style: TextStyle(
-                color: Colors.black,
+                color: Colors.teal
+                ,
               ),
             ),
-            selectedColor: Colors.blue.shade700,
+            selectedColor: backgroundColor,
           ),
 
           /// Profile
           SalomonBottomBarItem(
             icon: const Icon(
               Icons.person,
-              color: Colors.black,
+              color: Colors.teal,
             ),
             title: const Text(
               "Profile",
               style: TextStyle(
-                color: Colors.black,
+                color: Colors.teal,
               ),
             ),
-            selectedColor: Colors.blue.shade700,
+            selectedColor: backgroundColor,
           ),
         ],
       ),

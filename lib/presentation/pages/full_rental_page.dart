@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:homeland/constants/my_constants.dart';
 
 class FullRentalPage extends StatefulWidget {
   FullRentalPage({Key? key}) : super(key: key);
@@ -15,6 +16,10 @@ class _FullRentalPageState extends State<FullRentalPage> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
+        backgroundColor: backgroundColor,
+        title: const Text(
+          "2 bedrooms",
+        ),
       ),
       key: scaffoldKey,
       backgroundColor: Colors.transparent,
@@ -69,26 +74,33 @@ class _FullRentalPageState extends State<FullRentalPage> {
                 const ListTile(
                   title: Text(
                     '25,000 per month',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   subtitle: Text(
                     'Kiambu,ruaka',
+                    style: TextStyle(
+                      fontSize: 19,
+                    ),
                   ),
                 ),
                 Container(
-                  width: 100,
+                  width: double.infinity,
                   height: 50,
                   decoration: const BoxDecoration(
                     color: Color(0x00EEEEEE),
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Container(
-                        width: 100,
+                        // width: 100,
                         height: 40,
                         decoration: const BoxDecoration(
-                          color: Color(0xFFEEEEEE),
+                          color: Colors.transparent,
                         ),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
@@ -107,11 +119,8 @@ class _FullRentalPageState extends State<FullRentalPage> {
                         ),
                       ),
                       Container(
-                        width: 100,
+                        // width: 100
                         height: 40,
-                        decoration: const BoxDecoration(
-                          color: Color(0xFFEEEEEE),
-                        ),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -129,11 +138,7 @@ class _FullRentalPageState extends State<FullRentalPage> {
                         ),
                       ),
                       Container(
-                        width: 100,
                         height: 40,
-                        decoration: const BoxDecoration(
-                          color: Color(0xFFEEEEEE),
-                        ),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -153,20 +158,46 @@ class _FullRentalPageState extends State<FullRentalPage> {
                     ],
                   ),
                 ),
-                const Text(
-                  'Description',
-                  style: TextStyle(
-                    fontSize: 22,
+                Container(
+                  margin: const EdgeInsets.only(
+                    top: 15,
+                    left: 15,
+                    bottom: 5,
+                    right: 15,
+                  ),
+                  child: const Text(
+                    'Description',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
-                const Text(
-                  'llorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;  lorem5;lorem5;lorem5;lorem5; ',
-                  style: TextStyle(),
+                Container(
+                  margin: const EdgeInsets.only(
+                    top: 15,
+                    left: 15,
+                    bottom: 5,
+                    right: 15,
+                  ),
+                  child: const Text(
+                    'llorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;  lorem5;lorem5;lorem5;lorem5; ',
+                    style: TextStyle(),
+                  ),
                 ),
-                const Text(
-                  'Photos',
-                  style: TextStyle(
-                    fontSize: 22,
+                Container(
+                  margin: const EdgeInsets.only(
+                    top: 15,
+                    left: 15,
+                    bottom: 5,
+                    right: 15,
+                  ),
+                  child: const Text(
+                    'Photos',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
                 SingleChildScrollView(

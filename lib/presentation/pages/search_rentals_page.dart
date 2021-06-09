@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:homeland/constants/my_constants.dart';
 import 'package:homeland/presentation/myhomepage.dart';
 import 'package:homeland/presentation/pages/rentals_results_list.dart';
 import 'package:homeland/presentation/pages/search_place_page.dart';
@@ -18,14 +19,14 @@ class _SearchRentalsPageState extends State<SearchRentalsPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: backgroundColor,
         elevation: 0,
         // leading: const Icon(Icons.home),
         title: const Text(
           "HomeLand",
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            color: Colors.black,
+            color: Colors.white,
           ),
           textAlign: TextAlign.center,
         ),
@@ -49,7 +50,7 @@ class _SearchRentalsPageState extends State<SearchRentalsPage> {
                   width: MediaQuery.of(context).size.width,
                   height: 50,
                   decoration: BoxDecoration(
-                    color: const Color(0xB6C9C9C9),
+                    color: fgColor,
                     borderRadius: BorderRadius.circular(50),
                   ),
                   child: Padding(
@@ -102,7 +103,7 @@ class _SearchRentalsPageState extends State<SearchRentalsPage> {
             //   ),
             // ),
             InkWell(
-              onTap: () => Navigator.push(
+              onTap: () => Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
                   builder: (context) => const RentalsResultsListPage(),
@@ -110,6 +111,10 @@ class _SearchRentalsPageState extends State<SearchRentalsPage> {
               ),
               child: const Text(
                 "Use your location",
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:homeland/constants/my_constants.dart';
 
 class CreateRentalListingPage extends StatefulWidget {
   CreateRentalListingPage({Key? key}) : super(key: key);
@@ -12,6 +13,8 @@ class _CreateRentalListingPageState extends State<CreateRentalListingPage> {
   TextEditingController textController2 = TextEditingController();
   TextEditingController textController3 = TextEditingController();
   TextEditingController textController4 = TextEditingController();
+  TextEditingController textController5 = TextEditingController();
+  TextEditingController textController6 = TextEditingController();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -21,34 +24,42 @@ class _CreateRentalListingPageState extends State<CreateRentalListingPage> {
     textController2 = TextEditingController();
     textController3 = TextEditingController();
     textController4 = TextEditingController();
+    textController5 = TextEditingController();
+    textController6 = TextEditingController();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: backgroundColor,
+        elevation: 0,
+        title: const Text(
+          "HomeLand",
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
       ),
       key: scaffoldKey,
       body: SafeArea(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
+        child: ListView(
           children: [
             Padding(
-              padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+              padding: const EdgeInsets.fromLTRB(10, 10, 20, 10),
               child: Container(
                 width: MediaQuery.of(context).size.width,
                 height: 100,
                 decoration: BoxDecoration(
-                  color: Color(0xFFEEEEEE),
+                  color: const Color(0xFFEEEEEE),
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(
-                    color: Color(0xFF292929),
+                    color: Colors.grey,
                   ),
                 ),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
-                  children: [
+                  children: const [
                     Icon(Icons.add_a_photo),
                     Text(
                       'add photos',
@@ -58,15 +69,16 @@ class _CreateRentalListingPageState extends State<CreateRentalListingPage> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+              padding: const EdgeInsets.fromLTRB(5, 10, 5, 10),
               child: Container(
                 width: MediaQuery.of(context).size.width,
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                 height: 40,
                 decoration: BoxDecoration(
-                  color: Color(0xFFEEEEEE),
+                  color: const Color(0xFFEEEEEE),
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(
-                    color: Color(0xFF292929),
+                    color: Colors.grey,
                   ),
                 ),
                 child: TextFormField(
@@ -75,23 +87,23 @@ class _CreateRentalListingPageState extends State<CreateRentalListingPage> {
                   obscureText: false,
                   decoration: InputDecoration(
                     // labelText: 'number of bedrooms',
-                    hintText: 'number of bedrooms',
-                    enabledBorder: UnderlineInputBorder(
+                    hintText: 'place location',
+                    enabledBorder: const UnderlineInputBorder(
                       borderSide: BorderSide(
                         color: Color(0x00000000),
                         width: 1,
                       ),
-                      borderRadius: const BorderRadius.only(
+                      borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(4.0),
                         topRight: Radius.circular(4.0),
                       ),
                     ),
-                    focusedBorder: UnderlineInputBorder(
+                    focusedBorder: const UnderlineInputBorder(
                       borderSide: BorderSide(
                         color: Color(0x00000000),
                         width: 1,
                       ),
-                      borderRadius: const BorderRadius.only(
+                      borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(4.0),
                         topRight: Radius.circular(4.0),
                       ),
@@ -101,7 +113,7 @@ class _CreateRentalListingPageState extends State<CreateRentalListingPage> {
                             onTap: () => setState(
                               () => textController1.clear(),
                             ),
-                            child: Icon(
+                            child: const Icon(
                               Icons.clear,
                               color: Color(0xFF757575),
                               size: 22,
@@ -114,15 +126,16 @@ class _CreateRentalListingPageState extends State<CreateRentalListingPage> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+              padding: const EdgeInsets.fromLTRB(5, 10, 5, 10),
               child: Container(
                 width: MediaQuery.of(context).size.width,
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                 height: 40,
                 decoration: BoxDecoration(
-                  color: Color(0xFFEEEEEE),
+                  color: const Color(0xFFEEEEEE),
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(
-                    color: Color(0xFF292929),
+                    color: Colors.grey,
                   ),
                 ),
                 child: TextFormField(
@@ -130,24 +143,81 @@ class _CreateRentalListingPageState extends State<CreateRentalListingPage> {
                   controller: textController2,
                   obscureText: false,
                   decoration: InputDecoration(
-                    // labelText: 'number of bathrooms',
-                    hintText: 'number of bathrooms',
-                    enabledBorder: UnderlineInputBorder(
+                    // labelText: 'number of bedrooms',
+                    hintText: 'number of bedrooms',
+                    enabledBorder: const UnderlineInputBorder(
                       borderSide: BorderSide(
                         color: Color(0x00000000),
                         width: 1,
                       ),
-                      borderRadius: const BorderRadius.only(
+                      borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(4.0),
                         topRight: Radius.circular(4.0),
                       ),
                     ),
-                    focusedBorder: UnderlineInputBorder(
+                    focusedBorder: const UnderlineInputBorder(
                       borderSide: BorderSide(
                         color: Color(0x00000000),
                         width: 1,
                       ),
-                      borderRadius: const BorderRadius.only(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(4.0),
+                        topRight: Radius.circular(4.0),
+                      ),
+                    ),
+                    suffixIcon: textController1.text.isNotEmpty
+                        ? InkWell(
+                            onTap: () => setState(
+                              () => textController1.clear(),
+                            ),
+                            child: const Icon(
+                              Icons.clear,
+                              color: Color(0xFF757575),
+                              size: 22,
+                            ),
+                          )
+                        : null,
+                  ),
+                  keyboardType: TextInputType.number,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                height: 40,
+                decoration: BoxDecoration(
+                  color: const Color(0xFFEEEEEE),
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(
+                    color: Colors.grey,
+                  ),
+                ),
+                child: TextFormField(
+                  onChanged: (_) => setState(() {}),
+                  controller: textController3,
+                  obscureText: false,
+                  decoration: InputDecoration(
+                    // labelText: 'number of bathrooms',
+                    hintText: 'number of bathrooms',
+                    enabledBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0x00000000),
+                        width: 1,
+                      ),
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(4.0),
+                        topRight: Radius.circular(4.0),
+                      ),
+                    ),
+                    focusedBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0x00000000),
+                        width: 1,
+                      ),
+                      borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(4.0),
                         topRight: Radius.circular(4.0),
                       ),
@@ -157,7 +227,7 @@ class _CreateRentalListingPageState extends State<CreateRentalListingPage> {
                             onTap: () => setState(
                               () => textController2.clear(),
                             ),
-                            child: Icon(
+                            child: const Icon(
                               Icons.clear,
                               color: Color(0xFF757575),
                               size: 22,
@@ -170,40 +240,98 @@ class _CreateRentalListingPageState extends State<CreateRentalListingPage> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+              padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
               child: Container(
                 width: MediaQuery.of(context).size.width,
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                 height: 40,
                 decoration: BoxDecoration(
-                  color: Color(0xFFEEEEEE),
+                  color: const Color(0xFFEEEEEE),
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(
-                    color: Color(0xFF292929),
+                    color: Colors.grey,
                   ),
                 ),
                 child: TextFormField(
                   onChanged: (_) => setState(() {}),
-                  controller: textController3,
+                  controller: textController4,
                   obscureText: false,
                   decoration: InputDecoration(
-                    // labelText: 'price per month',
-                    hintText: 'price per month',
-                    enabledBorder: UnderlineInputBorder(
+                    // labelText: 'number of bathrooms',
+                    hintText: 'parking',
+                    enabledBorder: const UnderlineInputBorder(
                       borderSide: BorderSide(
                         color: Color(0x00000000),
                         width: 1,
                       ),
-                      borderRadius: const BorderRadius.only(
+                      borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(4.0),
                         topRight: Radius.circular(4.0),
                       ),
                     ),
-                    focusedBorder: UnderlineInputBorder(
+                    focusedBorder: const UnderlineInputBorder(
                       borderSide: BorderSide(
                         color: Color(0x00000000),
                         width: 1,
                       ),
-                      borderRadius: const BorderRadius.only(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(4.0),
+                        topRight: Radius.circular(4.0),
+                      ),
+                    ),
+                    suffixIcon: textController2.text.isNotEmpty
+                        ? InkWell(
+                            onTap: () => setState(
+                              () => textController2.clear(),
+                            ),
+                            child: const Icon(
+                              Icons.clear,
+                              color: Color(0xFF757575),
+                              size: 22,
+                            ),
+                          )
+                        : null,
+                  ),
+                  keyboardType: TextInputType.number,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                height: 40,
+                decoration: BoxDecoration(
+                  color: const Color(0xFFEEEEEE),
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(
+                    color: Colors.grey,
+                  ),
+                ),
+                child: TextFormField(
+                  onChanged: (_) => setState(() {}),
+                  controller: textController5,
+                  obscureText: false,
+                  decoration: InputDecoration(
+                    // labelText: 'price per month',
+                    hintText: 'price per month',
+                    enabledBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0x00000000),
+                        width: 1,
+                      ),
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(4.0),
+                        topRight: Radius.circular(4.0),
+                      ),
+                    ),
+                    focusedBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0x00000000),
+                        width: 1,
+                      ),
+                      borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(4.0),
                         topRight: Radius.circular(4.0),
                       ),
@@ -213,7 +341,7 @@ class _CreateRentalListingPageState extends State<CreateRentalListingPage> {
                             onTap: () => setState(
                               () => textController3.clear(),
                             ),
-                            child: Icon(
+                            child: const Icon(
                               Icons.clear,
                               color: Color(0xFF757575),
                               size: 22,
@@ -226,15 +354,16 @@ class _CreateRentalListingPageState extends State<CreateRentalListingPage> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+              padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
               child: Container(
                 width: MediaQuery.of(context).size.width,
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                 height: 120,
                 decoration: BoxDecoration(
-                  color: Color(0xFFEEEEEE),
+                  color: const Color(0xFFEEEEEE),
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(
-                    color: Color(0xFF292929),
+                    color: Colors.grey,
                   ),
                 ),
                 child: TextFormField(
@@ -242,27 +371,27 @@ class _CreateRentalListingPageState extends State<CreateRentalListingPage> {
                   minLines: null,
                   maxLines: null,
                   onChanged: (_) => setState(() {}),
-                  controller: textController4,
+                  controller: textController6,
                   obscureText: false,
                   decoration: InputDecoration(
                     // labelText: 'property description',
                     hintText: 'property description',
-                    enabledBorder: UnderlineInputBorder(
+                    enabledBorder: const UnderlineInputBorder(
                       borderSide: BorderSide(
                         color: Color(0x00000000),
                         width: 1,
                       ),
-                      borderRadius: const BorderRadius.only(
+                      borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(4.0),
                         topRight: Radius.circular(4.0),
                       ),
                     ),
-                    focusedBorder: UnderlineInputBorder(
+                    focusedBorder: const UnderlineInputBorder(
                       borderSide: BorderSide(
                         color: Color(0x00000000),
                         width: 1,
                       ),
-                      borderRadius: const BorderRadius.only(
+                      borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(4.0),
                         topRight: Radius.circular(4.0),
                       ),
@@ -272,7 +401,7 @@ class _CreateRentalListingPageState extends State<CreateRentalListingPage> {
                             onTap: () => setState(
                               () => textController4.clear(),
                             ),
-                            child: Icon(
+                            child: const Icon(
                               Icons.clear,
                               color: Color(0xFF757575),
                               size: 22,
@@ -284,11 +413,23 @@ class _CreateRentalListingPageState extends State<CreateRentalListingPage> {
                 ),
               ),
             ),
-            MaterialButton(
-              onPressed: () {
-                print('Button pressed ...');
-              },
-              child: Text("continue"),
+            Container(
+              margin: const EdgeInsets.symmetric(vertical: 10,),
+              child: Align(
+                alignment: const Alignment(0, -1),
+                child: SizedBox(
+                  height: 50,
+                  width: 150,
+                  child: MaterialButton(
+                    onPressed: () {
+                      print('Button pressed ...');
+                    },
+                    color: Colors.teal,
+                    textColor: Colors.white,
+                    child: const Text("continue"),
+                  ),
+                ),
+              ),
             ),
           ],
         ),

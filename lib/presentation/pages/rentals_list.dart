@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:homeland/constants/my_constants.dart';
 import 'package:homeland/presentation/pages/full_rental_page.dart';
 import 'package:homeland/presentation/reusables/rental_main_list_card.dart';
 
@@ -9,14 +10,14 @@ class RentalsListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: backgroundColor,
         elevation: 0,
         // leading: const Icon(Icons.home),
         title: const Text(
           "HomeLand",
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            color: Colors.black,
+            // color: Colors.black,
           ),
           textAlign: TextAlign.center,
         ),

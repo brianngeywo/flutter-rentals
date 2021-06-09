@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 Widget rentalCard(BuildContext context) {
-  double cardHeight = 380;
+  double cardHeight = 360;
   double imageHeight = 260;
   var screenWidth = MediaQuery.of(context).size.width;
   return Padding(
@@ -25,10 +25,11 @@ Widget rentalCard(BuildContext context) {
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.network(
-                  // imageUrl:
-                  'https://images.unsplash.com/photo-1591465709469-5de113a071cc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1504&q=80',
+                CachedNetworkImage(
+                  imageUrl:
+                      'https://images.unsplash.com/photo-1591465709469-5de113a071cc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1504&q=80',
                   width: double.infinity,
+                  fadeInDuration: const Duration(seconds: 1),
                   height: imageHeight,
                   fit: BoxFit.cover,
                 ),
@@ -36,7 +37,7 @@ Widget rentalCard(BuildContext context) {
                   padding: const EdgeInsets.fromLTRB(7, 2, 0, 0),
                   child: Container(
                     width: screenWidth,
-                    height: 30,
+                    height: 25,
                     decoration: const BoxDecoration(
                       color: Colors.white,
                     ),
@@ -55,7 +56,7 @@ Widget rentalCard(BuildContext context) {
                   padding: const EdgeInsets.fromLTRB(7, 2, 0, 0),
                   child: Container(
                     width: MediaQuery.of(context).size.width,
-                    height: 30,
+                    height: 25,
                     decoration: const BoxDecoration(
                       color: Colors.white,
                     ),
@@ -74,7 +75,7 @@ Widget rentalCard(BuildContext context) {
                   padding: const EdgeInsets.fromLTRB(7, 2, 0, 0),
                   child: Container(
                     width: MediaQuery.of(context).size.width,
-                    height: 30,
+                    height: 25,
                     decoration: const BoxDecoration(
                       color: Colors.white,
                     ),

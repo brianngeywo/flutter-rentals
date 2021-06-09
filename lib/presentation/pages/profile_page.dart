@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:homeland/constants/my_constants.dart';
 import 'package:homeland/presentation/reusables/profile_page_account_opitions_list_tile.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -7,6 +9,16 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: backgroundColor,
+        elevation: 0,
+        title: const Text(
+          "Account",
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+      ),
       key: scaffoldKey,
       body: SafeArea(
         child: Column(
@@ -38,25 +50,27 @@ class ProfilePage extends StatelessWidget {
                             decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                             ),
-                            child: Image.network(
-                              'https://picsum.photos/seed/205/600',
+                            child: CachedNetworkImage(
+                              imageUrl: 'https://picsum.photos/seed/205/600',
+                              fadeInDuration: const Duration(seconds: 1),
                             ),
                           ),
                         ),
                         const Padding(
-                          padding: EdgeInsets.fromLTRB(0, 20, 20, 0),
+                          padding: EdgeInsets.fromLTRB(0, 20,20, 0),
                           child: Icon(
-                            Icons.create_outlined,
+                            Icons.create,
                             color: Colors.black,
-                            size: 24,
+                            size: 28,
                           ),
                         )
                       ],
                     ),
                     const Padding(
-                      padding: EdgeInsets.fromLTRB(20, 10, 0, 10),
+                      padding: EdgeInsets.fromLTRB(30, 10, 0, 10),
                       child: Text(
                         'Username',
+                        style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),
                       ),
                     )
                   ],
@@ -69,11 +83,12 @@ class ProfilePage extends StatelessWidget {
               decoration: const BoxDecoration(
                 color: Color(0xFFEEEEEE),
               ),
-              child: Center(
-                child: const Padding(
+              child: const Center(
+                child:  Padding(
                   padding: EdgeInsets.fromLTRB(15, 0, 0, 0),
                   child: Text(
                     'Account Details',
+                    style: TextStyle(color: Colors.black,fontWeight: FontWeight.w400,fontSize: 15,),
                   ),
                 ),
               ),
@@ -122,16 +137,22 @@ class ProfilePage extends StatelessWidget {
               child: Container(
                 width: MediaQuery.of(context).size.width,
                 height: double.infinity,
-                decoration: const BoxDecoration(color: Color(0xFFEEEEEE)),
+                decoration: const BoxDecoration(color: Color(0xFFEEEEEE),),
                 child: Align(
                   alignment: const Alignment(0, -1),
-                  child: MaterialButton(
-                    color: Colors.white,
-                    onPressed: () {
-                      print('Button pressed ...');
-                    },
-                    child: const Text(
-                      "Sign Out",
+                  child: SizedBox(
+                    height: 50,
+                    width: 150,
+                    child: MaterialButton(
+                      color: backgroundColor,
+                      textColor: Colors.white,
+                      onPressed: () {
+                        print('Button pressed ...');
+                      },
+                      child: const Text(
+                        "Sign Out",
+                        style: TextStyle(fontSize: 17,),
+                      ),
                     ),
                   ),
                 ),

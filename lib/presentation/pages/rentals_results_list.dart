@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:homeland/constants/my_constants.dart';
 import 'package:homeland/presentation/myhomepage.dart';
 import 'package:homeland/presentation/pages/full_rental_page.dart';
 import 'package:homeland/presentation/pages/search_place_page.dart';
@@ -11,14 +12,14 @@ class RentalsResultsListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: backgroundColor,
         elevation: 0,
         // leading: const Icon(Icons.home),
         title: const Text(
           "Results",
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            color: Colors.black,
+            color: Colors.white,
           ),
         ),
         actions: [
@@ -32,9 +33,10 @@ class RentalsResultsListPage extends StatelessWidget {
                   },
                 ),
               ),
-              child: const Text(
-                "GO HOME",
-              ),
+              child: const Text("GO HOME",
+                  style: TextStyle(
+                    color: Colors.white,
+                  )),
             ),
           ),
         ],

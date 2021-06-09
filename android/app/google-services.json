@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "64763836685",
+    "project_id": "homeland-ca7ca",
+    "storage_bucket": "homeland-ca7ca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:64763836685:android:123384e40fbb97111d5844",
+        "android_client_info": {
+          "package_name": "com.example.homeland"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "64763836685-h6ldvur0a3adeb062qt56g5mnpcrfh4v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxCpcZZM1pDIly2n9dtueEm7pZqZ59wVU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "64763836685-h6ldvur0a3adeb062qt56g5mnpcrfh4v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
