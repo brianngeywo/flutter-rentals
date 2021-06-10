@@ -8,6 +8,7 @@ class WelcomePage extends StatelessWidget {
     var screenHeight = MediaQuery.of(context).size.height;
     var screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
+       backgroundColor: Colors.white,
       body: SizedBox(
         height: screenHeight,
         width: screenWidth,

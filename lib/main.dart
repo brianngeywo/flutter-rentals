@@ -11,5 +11,5 @@ Future<void> main() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   initScreen = await prefs.getInt('initScreen');
   await prefs.setInt('initScreen', 1);
-  runApp(MyApp());
+  runApp(const MyApp());
 }

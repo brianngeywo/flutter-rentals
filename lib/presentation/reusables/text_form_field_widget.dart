@@ -15,7 +15,7 @@ import 'package:flutter/material.dart';
 class TextFormFieldWidget extends StatefulWidget {
   final TextInputType textInputType;
   final String hintText;
-  final Widget prefixIcon;
+  final Widget? prefixIcon;
   final Widget? suffixIcon;
 
   // final String defaultText;
@@ -26,8 +26,13 @@ class TextFormFieldWidget extends StatefulWidget {
   final TextInputAction actionKeyboard;
   final Function onSubmitField;
   final Function onFieldTap;
+  final Function onChanged;
   final Color textColor;
-  final int maxlines;
+  var maxlines;
+  var minlines;
+  final bool expands;
+  final Color borderSideColor;
+  final Color clearIconColor;
 
   TextFormFieldWidget({
     Key? key,
@@ -40,10 +45,15 @@ class TextFormFieldWidget extends StatefulWidget {
     this.actionKeyboard = TextInputAction.next,
     required this.onSubmitField,
     required this.onFieldTap,
-    required this.prefixIcon,
+    this.prefixIcon,
     this.suffixIcon,
     this.textColor = Colors.black,
     this.maxlines = 1,
+    this.minlines = 1,
+    this.expands = false,
+    required this.onChanged,
+    required this.borderSideColor,
+    required this.clearIconColor,
   });
 
   @override
@@ -60,66 +70,50 @@ class _TextFormFieldWidgetState extends State<TextFormFieldWidget> {
         primaryColor: Theme.of(context).primaryColor,
       ),
       child: TextFormField(
+        expands: widget.expands,
+        minLines: widget.minlines,
         maxLines: widget.maxlines,
-        cursorColor: Theme.of(context).primaryColor,
-        obscureText: widget.obscureText,
-        keyboardType: widget.textInputType,
-        textInputAction: widget.actionKeyboard,
-        // focusNode: widget.focusNode,
-        style: TextStyle(
-          color: widget.textColor,
-          fontSize: 16.0,
-          fontWeight: FontWeight.w200,
-          fontStyle: FontStyle.normal,
-          letterSpacing: 1.2,
-        ),
-        // initialValue: widget.defaultText,
-        decoration: InputDecoration(
-          prefixIcon: widget.prefixIcon,
-          suffixIcon: widget.suffixIcon,
-          hintText: widget.hintText,
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Theme.of(context).primaryColor),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Theme.of(context).primaryColor),
-          ),
-          hintStyle: const TextStyle(
-            color: Colors.grey,
-            fontSize: 14.0,
-            fontWeight: FontWeight.w300,
-            fontStyle: FontStyle.normal,
-            letterSpacing: 1.2,
-          ),
-          contentPadding: EdgeInsets.only(top: 12, bottom: bottomPaddingToError, left: 8.0, right: 8.0),
-          isDense: true,
-          errorStyle: const TextStyle(
-            color: Colors.red,
-            fontSize: 12.0,
-            fontWeight: FontWeight.w300,
-            fontStyle: FontStyle.normal,
-            letterSpacing: 1.2,
-          ),
-          errorBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Theme.of(context).primaryColor),
-          ),
-          focusedErrorBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Theme.of(context).primaryColor),
-          ),
-        ),
+        onChanged: (_) => widget.onChanged,
         controller: widget.controller,
-        onFieldSubmitted: (value) {
-          widget.onSubmitField();
-        },
-        onTap: () {
-          widget.onFieldTap();
-        },
+        obscureText: widget.obscureText,
+        decoration: InputDecoration(
+          // labelText: 'property description',
+          hintText: widget.hintText,
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: widget.borderSideColor,
+              width: 1,
+            ),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(4.0),
+              topRight: Radius.circular(4.0),
+            ),
+          ),
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: widget.borderSideColor,
+              width: 1,
+            ),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(4.0),
+              topRight: Radius.circular(4.0),
+            ),
+          ),
+          suffixIcon: widget.controller.text.isNotEmpty
+              ? InkWell(
+                  onTap: () => setState(
+                    () => widget.controller.clear(),
+                  ),
+                  child: Icon(
+                    Icons.clear,
+                    color: widget.clearIconColor,
+                    size: 22,
+                  ),
+                )
+              : null,
+        ),
+        keyboardType: widget.textInputType,
       ),
     );
   }
-}
-
-void changeFocus(BuildContext context, FocusNode currentFocus, FocusNode nextFocus) {
-  currentFocus.unfocus();
-  FocusScope.of(context).requestFocus(nextFocus);
 }

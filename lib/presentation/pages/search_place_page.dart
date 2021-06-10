@@ -74,53 +74,23 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
                     size: 24,
                   ),
                   Container(
-                    margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                    margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                     width: MediaQuery.of(context).size.width * 0.73,
                     height: 40,
-                    child: TextFormField(
+                    child: TextFormFieldWidget(
                       expands: true,
-                      minLines: null,
-                      maxLines: null,
+                      minlines: null,
+                      maxlines: null,
                       onChanged: (_) => setState(() {}),
                       controller: textController1,
                       obscureText: false,
-                      decoration: InputDecoration(
-                        // labelText: 'property description',
-                        hintText: 'e.g. nairobi, westland',
-                        enabledBorder: const UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color(0x00000000),
-                            width: 1,
-                          ),
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(4.0),
-                            topRight: Radius.circular(4.0),
-                          ),
-                        ),
-                        focusedBorder: const UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color(0x00000000),
-                            width: 1,
-                          ),
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(4.0),
-                            topRight: Radius.circular(4.0),
-                          ),
-                        ),
-                        suffixIcon: textController1.text.isNotEmpty
-                            ? InkWell(
-                                onTap: () => setState(
-                                  () => textController1.clear(),
-                                ),
-                                child: const Icon(
-                                  Icons.clear,
-                                  color: Color(0xFF757575),
-                                  size: 22,
-                                ),
-                              )
-                            : null,
-                      ),
-                      keyboardType: TextInputType.multiline,
+                      hintText: 'e.g. nairobi, westland',
+                      textInputType: TextInputType.multiline,
+                      borderSideColor: const Color(0x00000000),
+                      clearIconColor: const Color(0xFF757575),
+                      onFieldTap: (_) => setState(() {}),
+                      onSubmitField: (_) => setState(() {}),
+                      
                     ),
                   ),
                 ],

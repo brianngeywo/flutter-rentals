@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:homeland/constants/my_constants.dart';
+import 'package:homeland/presentation/reusables/contained_photo.dart';
 
 class FullRentalPage extends StatefulWidget {
   FullRentalPage({Key? key}) : super(key: key);
@@ -43,14 +45,10 @@ class _FullRentalPageState extends State<FullRentalPage> {
               height: MediaQuery.of(context).size.height * 0.4,
               decoration: const BoxDecoration(
                 color: Color(0xFFEEEEEE),
-                // image: DecorationImage(
-                //   image: NetworkImage(
-                //     'https://images.unsplash.com/photo-1449844908441-8829872d2607?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80',
-                //   ),
-                // ),
               ),
-              child: Image.network(
-                'https://images.unsplash.com/photo-1449844908441-8829872d2607?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80',
+              child: CachedNetworkImage(
+                imageUrl:
+                    'https://images.unsplash.com/photo-1449844908441-8829872d2607?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80',
                 fit: BoxFit.cover,
               ),
             ),
@@ -159,12 +157,7 @@ class _FullRentalPageState extends State<FullRentalPage> {
                   ),
                 ),
                 Container(
-                  margin: const EdgeInsets.only(
-                    top: 15,
-                    left: 15,
-                    bottom: 5,
-                    right: 15,
-                  ),
+                  margin: const EdgeInsets.only(top: 15, left: 15, bottom: 5, right: 15),
                   child: const Text(
                     'Description',
                     style: TextStyle(
@@ -174,24 +167,14 @@ class _FullRentalPageState extends State<FullRentalPage> {
                   ),
                 ),
                 Container(
-                  margin: const EdgeInsets.only(
-                    top: 15,
-                    left: 15,
-                    bottom: 5,
-                    right: 15,
-                  ),
+                  margin: const EdgeInsets.only(top: 15, left: 15, bottom: 5, right: 15),
                   child: const Text(
                     'llorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;  lorem5;lorem5;lorem5;lorem5; ',
                     style: TextStyle(),
                   ),
                 ),
                 Container(
-                  margin: const EdgeInsets.only(
-                    top: 15,
-                    left: 15,
-                    bottom: 5,
-                    right: 15,
-                  ),
+                  margin: const EdgeInsets.only(top: 15, left: 15, bottom: 5, right: 15),
                   child: const Text(
                     'Photos',
                     style: TextStyle(
@@ -205,42 +188,24 @@ class _FullRentalPageState extends State<FullRentalPage> {
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(5, 5, 5, 0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          child: Image.network(
-                            'https://picsum.photos/seed/815/600',
-                            width: 200,
-                            height: 200,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
+                      containedPhoto(
+                        200,
+                        200,
+                        BorderRadius.circular(20),
+                        'https://picsum.photos/seed/815/600',
                       ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          child: Image.network(
-                            'https://picsum.photos/seed/246/600',
-                            width: 200,
-                            height: 200,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
+                      containedPhoto(
+                        200,
+                        200,
+                        BorderRadius.circular(20),
+                        'https://picsum.photos/seed/815/600',
                       ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          child: Image.network(
-                            'https://picsum.photos/seed/735/600',
-                            width: 200,
-                            height: 200,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      )
+                      containedPhoto(
+                        200,
+                        200,
+                        BorderRadius.circular(20),
+                        'https://picsum.photos/seed/815/600',
+                      ),
                     ],
                   ),
                 )

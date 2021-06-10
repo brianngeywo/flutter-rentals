@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:homeland/constants/my_constants.dart';
 import 'package:homeland/main.dart';
 import 'package:homeland/presentation/myhomepage.dart';
 import 'package:homeland/presentation/pages/initial_pages/first_screen.dart';
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Dem',
       theme: ThemeData(
-        primaryColor: Colors.blue,
+        primaryColor: backgroundColor,
       ),
       debugShowCheckedModeBanner: false,
       home: initScreen == 1 ? const MyHomePage() : const FirstScreen(),

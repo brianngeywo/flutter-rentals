@@ -75,35 +75,8 @@ class _SearchRentalsPageState extends State<SearchRentalsPage> {
                 ),
               ),
             ),
-            // Padding(
-            //   padding: const EdgeInsets.all(20),
-            //   child: InkWell(
-            //     onTap: () => Navigator.push(
-            //       context,
-            //       MaterialPageRoute(
-            //         builder: (context) => const SearchPlacePage(
-            //           hintText: "search place",
-            //         ),
-            //       ),
-            //     ),
-            //     child: Container(
-            //       width: MediaQuery.of(context).size.width,
-            //       height: 40,
-            //       decoration: BoxDecoration(
-            //         color: const Color(0xB6C9C9C9),
-            //         borderRadius: BorderRadius.circular(50),
-            //       ),
-            //       child: const Padding(
-            //         padding: EdgeInsets.only(left: 10),
-            //         child: Text(
-            //           "Search...",
-            //         ),
-            //       ),
-            //     ),
-            //   ),
-            // ),
-            InkWell(
-              onTap: () => Navigator.pushReplacement(
+            MaterialButton(
+              onPressed: () => Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
                   builder: (context) => const RentalsResultsListPage(),

@@ -30,7 +30,7 @@ class ChatsListScreen extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (context) {
-                  return const ChatConversationScreen();
+                  return ChatConversationScreen();
                 },
               ),
             ),
@@ -38,20 +38,6 @@ class ChatsListScreen extends StatelessWidget {
           ),
         ),
       ),
-
-      // Center(
-      //   child: InkWell(
-      //     onTap: () => Navigator.push(
-      //       context,
-      //       MaterialPageRoute(
-      //         builder: (context) {
-      //           return const ChatConversationScreen();
-      //         },
-      //       ),
-      //     ),
-      //     child: const Text("chats list will come here"),
-      //   ),
-      // ),
     );
   }
 }
