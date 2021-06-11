@@ -13,6 +13,7 @@ class ChatConversationScreen extends StatefulWidget {
 class _ChatConversationScreenState extends State<ChatConversationScreen> {
   TextEditingController textController1 = TextEditingController();
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  FocusNode focusNode = FocusNode();
 
   @override
   void initState() {
@@ -119,6 +120,7 @@ class _ChatConversationScreenState extends State<ChatConversationScreen> {
                           // shape: BoxShape.rectangle,
                         ),
                         child: TextFormFieldWidget(
+                          focusNode: focusNode,
                           hintText: "Type message",
                           textInputType: TextInputType.multiline,
                           controller: textController1,

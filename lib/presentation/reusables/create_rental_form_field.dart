@@ -8,6 +8,7 @@ Widget createRentalFormFieldsWidget(
   String hintText,
   TextInputType textInputType,
   TextEditingController controller,
+FocusNode focusNode,
 ) {
   return Padding(
     padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
@@ -23,6 +24,7 @@ Widget createRentalFormFieldsWidget(
         ),
       ),
       child: TextFormFieldWidget(
+        focusNode: focusNode,
         hintText: hintText,
         textInputType: textInputType,
         controller: controller,

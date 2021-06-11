@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:homeland/constants/my_constants.dart';
 import 'package:homeland/presentation/reusables/contained_photo.dart';
@@ -101,7 +100,7 @@ class ProfilePage extends StatelessWidget {
                     ),
                   ),
                 ),
-                ProfilePageAccountOptionsListTile(
+                profilePageAccountOptionsListTile(
                   context,
                   "Your rentals",
                   const Icon(
@@ -110,7 +109,7 @@ class ProfilePage extends StatelessWidget {
                   ),
                 ),
                 const Divider(),
-                ProfilePageAccountOptionsListTile(
+                profilePageAccountOptionsListTile(
                   context,
                   "+2547********",
                   const Icon(
@@ -118,7 +117,7 @@ class ProfilePage extends StatelessWidget {
                   ),
                 ),
                 const Divider(),
-                ProfilePageAccountOptionsListTile(
+                profilePageAccountOptionsListTile(
                   context,
                   "email@gmail.com",
                   const Icon(
@@ -126,7 +125,7 @@ class ProfilePage extends StatelessWidget {
                   ),
                 ),
                 const Divider(),
-                ProfilePageAccountOptionsListTile(
+                profilePageAccountOptionsListTile(
                   context,
                   "Kiambu,ruaka",
                   const Icon(
@@ -134,7 +133,7 @@ class ProfilePage extends StatelessWidget {
                   ),
                 ),
                 const Divider(),
-                ProfilePageAccountOptionsListTile(
+                profilePageAccountOptionsListTile(
                   context,
                   "Change password",
                   const Icon(
@@ -151,8 +150,8 @@ class ProfilePage extends StatelessWidget {
                   child: Align(
                     alignment: const Alignment(0, 0),
                     child: SizedBox(
-                      height: 50,
-                      width: 120,
+                        height: 40,
+                      width: 100,
                       child: MaterialButton(
                         color: backgroundColor,
                         textColor: Colors.white,

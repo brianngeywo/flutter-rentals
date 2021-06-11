@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget ProfilePageAccountOptionsListTile(BuildContext context, String title, Icon action) {
+Widget profilePageAccountOptionsListTile(BuildContext context, String title, Icon action) {
   return Container(
     width: MediaQuery.of(context).size.width,
     height: 40,

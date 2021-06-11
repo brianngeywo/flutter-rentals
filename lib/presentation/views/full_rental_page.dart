@@ -1,10 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:homeland/constants/my_constants.dart';
+import 'package:homeland/data/models/rental.dart';
 import 'package:homeland/presentation/reusables/contained_photo.dart';
 
 class FullRentalPage extends StatefulWidget {
-  FullRentalPage({Key? key}) : super(key: key);
+  const FullRentalPage({
+    Key? key,
+    required this.rental,
+  }) : super(key: key);
+  final Rental rental;
 
   @override
   _FullRentalPageState createState() => _FullRentalPageState();
@@ -19,23 +24,45 @@ class _FullRentalPageState extends State<FullRentalPage> {
       appBar: AppBar(
         automaticallyImplyLeading: true,
         backgroundColor: backgroundColor,
-        title: const Text(
-          "2 bedrooms",
+        title: Text(
+          widget.rental.bedrooms + " bedrooms",
         ),
       ),
       key: scaffoldKey,
-      backgroundColor: Colors.transparent,
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          print('FloatingActionButton pressed ...');
-        },
-        backgroundColor: const Color(0xFF52996A),
-        icon: const Icon(
-          Icons.call,
+      bottomSheet: Container(
+        color: Colors.transparent,
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            FloatingActionButton.extended(
+              heroTag: "call",
+              onPressed: () {
+                print('FloatingActionButton pressed ...');
+              },
+              backgroundColor: const Color(0xFF52996A),
+              icon: const Icon(
+                Icons.call,
+              ),
+              elevation: 8,
+              label: const Text("Call me"),
+            ),
+            FloatingActionButton.extended(
+              heroTag: "message",
+              onPressed: () {
+                print('FloatingActionButton pressed ...');
+              },
+              backgroundColor: const Color(0xFF52996A),
+              icon: const Icon(
+                Icons.call,
+              ),
+              elevation: 8,
+              label: const Text("Message me"),
+            ),
+          ],
         ),
-        elevation: 8,
-        label: const Text("Call me"),
       ),
+      backgroundColor: Colors.transparent,
       body: Stack(
         children: [
           Align(
@@ -47,14 +74,18 @@ class _FullRentalPageState extends State<FullRentalPage> {
                 color: Color(0xFFEEEEEE),
               ),
               child: CachedNetworkImage(
-                imageUrl:
-                    'https://images.unsplash.com/photo-1449844908441-8829872d2607?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80',
+                imageUrl: widget.rental.photoUrl,
                 fit: BoxFit.cover,
               ),
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(top: 200),
+            margin: const EdgeInsets.only(
+              top: 200,
+            ),
+            padding: const EdgeInsets.only(
+              bottom: 80,
+            ),
             width: MediaQuery.of(context).size.width,
             decoration: const BoxDecoration(
               color: Color(0xFFEEEEEE),
@@ -69,17 +100,17 @@ class _FullRentalPageState extends State<FullRentalPage> {
               padding: EdgeInsets.zero,
               scrollDirection: Axis.vertical,
               children: [
-                const ListTile(
+                ListTile(
                   title: Text(
-                    '25,000 per month',
-                    style: TextStyle(
+                    widget.rental.price + ' per month',
+                    style: const TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   subtitle: Text(
-                    'Kiambu,ruaka',
-                    style: TextStyle(
+                    widget.rental.university + ', ' + widget.rental.town,
+                    style: const TextStyle(
                       fontSize: 19,
                     ),
                   ),
@@ -104,51 +135,51 @@ class _FullRentalPageState extends State<FullRentalPage> {
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.center,
-                          children: const [
-                            Icon(
+                          children: [
+                            const Icon(
                               Icons.king_bed_rounded,
                               color: Color(0xFF52996A),
                               size: 24,
                             ),
                             Text(
-                              '2 bedrooms',
+                              widget.rental.bedrooms + ' bedrooms',
                             )
                           ],
                         ),
                       ),
-                      Container(
+                      SizedBox(
                         // width: 100
                         height: 40,
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.center,
-                          children: const [
-                            Icon(
+                          children: [
+                            const Icon(
                               Icons.bathtub_sharp,
                               color: Color(0xFF52996A),
                               size: 24,
                             ),
                             Text(
-                              '1 bathrooms',
+                              widget.rental.bathrooms + ' bathrooms',
                             )
                           ],
                         ),
                       ),
-                      Container(
+                      SizedBox(
                         height: 40,
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.center,
-                          children: const [
+                          children: [
                             Icon(
-                              Icons.directions_car,
-                              color: Color(0xFF52996A),
+                              widget.rental.wifi ? Icons.wifi : Icons.wifi_off,
+                              color: const Color(0xFF52996A),
                               size: 24,
                             ),
-                            Text(
-                              '4 parking',
+                            const Text(
+                              'wifi',
                             )
                           ],
                         ),
@@ -168,12 +199,14 @@ class _FullRentalPageState extends State<FullRentalPage> {
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 15, left: 15, bottom: 5, right: 15),
-                  child: const Text(
-                    'llorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;lorem5;  lorem5;lorem5;lorem5;lorem5; ',
-                    style: TextStyle(),
+                  child: Text(
+                    widget.rental.description,
+                    style: const TextStyle(
+                      fontSize: 20,
+                    ),
                   ),
                 ),
-                Container(
+                 Container(
                   margin: const EdgeInsets.only(top: 15, left: 15, bottom: 5, right: 15),
                   child: const Text(
                     'Photos',

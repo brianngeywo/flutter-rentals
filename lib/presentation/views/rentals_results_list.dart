@@ -1,16 +1,23 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:homeland/constants/my_constants.dart';
+import 'package:homeland/data/models/rental.dart';
 import 'package:homeland/presentation/myhomepage.dart';
-import 'package:homeland/presentation/pages/full_rental_page.dart';
-import 'package:homeland/presentation/pages/search_place_page.dart';
 import 'package:homeland/presentation/reusables/rental_main_list_card.dart';
+import 'package:homeland/presentation/views/full_rental_page.dart';
+import 'package:homeland/services/database.dart';
 
 class RentalsResultsListPage extends StatelessWidget {
-  const RentalsResultsListPage({Key? key}) : super(key: key);
+  final String searchTerm;
+
+  RentalsResultsListPage({Key? key, required this.searchTerm}): super(key: key);
+
+  final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance.collection('rentals').where('tags', arrayContainsAny: ["searchTerm"],).snapshots();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+     
       appBar: AppBar(
         backgroundColor: backgroundColor,
         elevation: 0,
@@ -41,20 +48,33 @@ class RentalsResultsListPage extends StatelessWidget {
           ),
         ],
       ),
-      body: ListView(
-        children: List.generate(
-          3,
-          (index) => InkWell(
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => FullRentalPage(),
-              ),
-            ),
-            child: rentalCard(context),
-          ),
-        ),
+      body: StreamBuilder<QuerySnapshot>(
+        stream: _usersStream,
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasError) {
+            return Text('Something went wrong');
+          }
+
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Text("Loading");
+          }
+       
+            return ListView(
+              children: snapshot.data!.docs.map((DocumentSnapshot document) {
+                Rental rental = Rental.fromFirestore(document);
+                return rentalCard(context, rental);
+              }).toList(),
+            );
+         
+        },
       ),
     );
   }
 }
+
+
+
+
+
+
+

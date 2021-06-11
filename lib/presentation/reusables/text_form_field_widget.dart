@@ -19,7 +19,7 @@ class TextFormFieldWidget extends StatefulWidget {
   final Widget? suffixIcon;
 
   // final String defaultText;
-  // final FocusNode focusNode;
+  final FocusNode focusNode;
   final bool obscureText;
   final TextEditingController controller;
 
@@ -37,7 +37,7 @@ class TextFormFieldWidget extends StatefulWidget {
   TextFormFieldWidget({
     Key? key,
     required this.hintText,
-    // required this.focusNode,
+    required this.focusNode,
     required this.textInputType,
     // required this.defaultText,
     this.obscureText = false,
@@ -70,6 +70,7 @@ class _TextFormFieldWidgetState extends State<TextFormFieldWidget> {
         primaryColor: Theme.of(context).primaryColor,
       ),
       child: TextFormField(
+        focusNode: widget.focusNode,
         expands: widget.expands,
         minLines: widget.minlines,
         maxLines: widget.maxlines,
@@ -84,7 +85,7 @@ class _TextFormFieldWidgetState extends State<TextFormFieldWidget> {
               color: widget.borderSideColor,
               width: 1,
             ),
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(4.0),
               topRight: Radius.circular(4.0),
             ),
@@ -94,7 +95,7 @@ class _TextFormFieldWidgetState extends State<TextFormFieldWidget> {
               color: widget.borderSideColor,
               width: 1,
             ),
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(4.0),
               topRight: Radius.circular(4.0),
             ),

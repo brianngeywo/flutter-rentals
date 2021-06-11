@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:homeland/constants/my_constants.dart';
-import 'package:homeland/presentation/pages/chat_conversation_screen.dart';
 import 'package:homeland/presentation/reusables/chats_list_card.dart';
+import 'package:homeland/presentation/views/chat_conversation_screen.dart';
 
 class ChatsListScreen extends StatelessWidget {
   const ChatsListScreen({Key? key}) : super(key: key);
@@ -30,7 +30,7 @@ class ChatsListScreen extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (context) {
-                  return ChatConversationScreen();
+                  return const ChatConversationScreen();
                 },
               ),
             ),

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:homeland/constants/my_constants.dart';
-import 'package:homeland/presentation/myhomepage.dart';
-import 'package:homeland/presentation/pages/rentals_results_list.dart';
-import 'package:homeland/presentation/pages/search_place_page.dart';
-import 'package:homeland/presentation/reusables/text_form_field_widget.dart';
+import 'package:homeland/presentation/views/rentals_results_list.dart';
+import 'package:homeland/presentation/views/search_place_page.dart';
 
 class SearchRentalsPage extends StatefulWidget {
   const SearchRentalsPage({Key? key}) : super(key: key);
@@ -38,14 +36,15 @@ class _SearchRentalsPageState extends State<SearchRentalsPage> {
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
               child: InkWell(
-                onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const SearchPlacePage(
-                      hintText: "search place",
-                    ),
-                  ),
-                ),
+                onTap: () => {},
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) => SearchPlacePage(
+                //       hintText: "search place",
+                //     ),
+                //   ),
+                // ),
                 child: Container(
                   width: MediaQuery.of(context).size.width,
                   height: 50,
@@ -76,12 +75,13 @@ class _SearchRentalsPageState extends State<SearchRentalsPage> {
               ),
             ),
             MaterialButton(
-              onPressed: () => Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const RentalsResultsListPage(),
-                ),
-              ),
+              onPressed: () => {},
+              // Navigator.pushReplacement(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => RentalsResultsListPage(),
+              //   ),
+              // ),
               child: const Text(
                 "Use your location",
                 style: TextStyle(

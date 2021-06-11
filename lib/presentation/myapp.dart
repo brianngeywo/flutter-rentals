@@ -10,12 +10,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Dem',
+      title: 'Campus Rentals',
       theme: ThemeData(
         primaryColor: backgroundColor,
       ),
       debugShowCheckedModeBanner: false,
-      home: initScreen == 1 ? const MyHomePage() : const FirstScreen(),
+      home: 
+      // initScreen == 1 ? 
+      const MyHomePage() 
+      // : const FirstScreen(),
     );
   }
 }

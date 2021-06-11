@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:homeland/constants/my_constants.dart';
 import 'package:homeland/presentation/reusables/create_rental_form_field.dart';
-import 'package:homeland/presentation/reusables/text_form_field_widget.dart';
 
 class CreateRentalListingPage extends StatefulWidget {
-  CreateRentalListingPage({Key? key}) : super(key: key);
+  const CreateRentalListingPage({Key? key}) : super(key: key);
 
   @override
   _CreateRentalListingPageState createState() => _CreateRentalListingPageState();
@@ -18,6 +17,12 @@ class _CreateRentalListingPageState extends State<CreateRentalListingPage> {
   TextEditingController textController5 = TextEditingController();
   TextEditingController textController6 = TextEditingController();
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  FocusNode focusNode = FocusNode();
+  FocusNode focusNode1 = FocusNode();
+  FocusNode focusNode2 = FocusNode();
+  FocusNode focusNode3 = FocusNode();
+  FocusNode focusNode4 = FocusNode();
+  FocusNode focusNode5 = FocusNode();
 
   @override
   void initState() {
@@ -80,15 +85,17 @@ class _CreateRentalListingPageState extends State<CreateRentalListingPage> {
                     ),
                   ),
                   createRentalFormFieldsWidget(
-                      context, 40, 'place location', TextInputType.streetAddress, textController1),
+                      context, 40, 'place location', TextInputType.streetAddress, textController1, focusNode),
                   createRentalFormFieldsWidget(
-                      context, 40, 'number of bedrooms', TextInputType.number, textController2),
+                      context, 40, 'number of bedrooms', TextInputType.number, textController2, focusNode1),
                   createRentalFormFieldsWidget(
-                      context, 40, 'number of bathrooms', TextInputType.number, textController3),
-                  createRentalFormFieldsWidget(context, 40, 'parking', TextInputType.number, textController4),
-                  createRentalFormFieldsWidget(context, 40, 'price per month', TextInputType.number, textController5),
+                      context, 40, 'number of bathrooms', TextInputType.number, textController3, focusNode2),
                   createRentalFormFieldsWidget(
-                      context, 140, 'property description', TextInputType.multiline, textController6),
+                      context, 40, 'parking', TextInputType.number, textController4, focusNode3),
+                  createRentalFormFieldsWidget(
+                      context, 40, 'price per month', TextInputType.number, textController5, focusNode4),
+                  createRentalFormFieldsWidget(
+                      context, 140, 'property description', TextInputType.multiline, textController6, focusNode5),
                   Container(
                     margin: const EdgeInsets.symmetric(
                       vertical: 10,
