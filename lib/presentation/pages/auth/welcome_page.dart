@@ -1,5 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:homeland/presentation/views/search_rentals_page.dart';
+import 'package:homeland/constants/my_constants.dart';
+import 'package:homeland/data/services/auth.dart';
+import 'package:homeland/presentation/myhomepage.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({Key? key}) : super(key: key);
@@ -14,15 +17,19 @@ class WelcomePage extends StatelessWidget {
         width: screenWidth,
         child: Stack(
           children: [
-            Image.network(
-              "https://images.unsplash.com/photo-1460317442991-0ec209397118?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
-              fit: BoxFit.cover,
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-            ),
+       Image.asset(
+                "assets/images/bg.jpeg",
+
+                fit: BoxFit.cover,
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                colorBlendMode: BlendMode.darken,
+                color: Colors.black26),
             Positioned(
               top: 200,
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
                     height: screenHeight * 0.318,
@@ -30,15 +37,22 @@ class WelcomePage extends StatelessWidget {
                     child: const Text(
                       "Yetu App",
                       style: TextStyle(
-                        fontSize: 40,
+                        fontSize: 50,
                         color: Colors.white,
                         decorationStyle: TextDecorationStyle.wavy,
                         fontWeight: FontWeight.bold,
                       ),
+                      textAlign: TextAlign.center,
                     ),
                   ),
-                  // const Text(
-                  //   "continue with ",
+                  //  Text(
+                  //   "continue with ".toUpperCase(),
+                  //       style: TextStyle(
+                  //     fontSize: 32,
+                  //     color: backgroundColor,
+                  //     fontWeight: FontWeight.bold,
+                  //   ),
+                  //   textAlign: TextAlign.center,
                   // ),
                   // MaterialButton(
                   //   onPressed: () => Navigator.pushReplacement(
@@ -53,19 +67,32 @@ class WelcomePage extends StatelessWidget {
                   //     "Facebook",
                   //   ),
                   // ),
-                  // MaterialButton(
-                  //   onPressed: () => Navigator.pushReplacement(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //       builder: (context) {
-                  //         return const SearchRentalsPage();
-                  //       },
-                  //     ),
-                  //   ),
-                  //   child: const Text(
-                  //     "Google",
-                  //   ),
-                  // ),
+                  MaterialButton(
+                    color: backgroundColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                    onPressed: () => AuthMethods().handleSignIn(context).then(
+                          (value) => Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const MyHomePage()
+                            ),
+                          ),
+                        ),
+                    child: const Padding(
+                      padding: EdgeInsets.all(12.0),
+                      child: Text(
+                        "Continue with Google",
+                        style: TextStyle(
+                          fontSize: 22,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),

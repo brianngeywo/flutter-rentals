@@ -1,10 +1,18 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:homeland/constants/my_constants.dart';
+import 'package:homeland/data/models/user.dart';
+import 'package:homeland/data/services/database.dart';
+import 'package:homeland/helper_functions/sharedpref_helper.dart';
+import 'package:homeland/presentation/myhomepage.dart';
 import 'package:homeland/presentation/reusables/chats_conversation_screen_sent_message_card.dart';
 import 'package:homeland/presentation/reusables/text_form_field_widget.dart';
+import 'package:uuid/uuid.dart';
+import 'package:url_launcher/url_launcher.dart' as urlLauncher;
 
 class ChatConversationScreen extends StatefulWidget {
-  const ChatConversationScreen({Key? key}) : super(key: key);
+  const ChatConversationScreen({Key? key, required this.user}) : super(key: key);
+  final User user;
 
   @override
   _ChatConversationScreenState createState() => _ChatConversationScreenState();
@@ -14,11 +22,82 @@ class _ChatConversationScreenState extends State<ChatConversationScreen> {
   TextEditingController textController1 = TextEditingController();
   final scaffoldKey = GlobalKey<ScaffoldState>();
   FocusNode focusNode = FocusNode();
+  String messageId = "";
+  String chatRoomId = "";
+  String? myUsername = "";
+  Uuid uuid = const Uuid();
+  Stream messages = const Stream.empty();
+
+  getMyInfoFromShardPrefs() async {
+    // String? myName = await SharedPreferenceHelper().getDisplayname();
+    myUsername = await SharedPreferenceHelper().getUsername();
+    chatRoomId = getChatRoomIdbyUserId(currentUser!.uid, widget.user.userId);
+    await getAndSetMessages();
+  }
+
+  getChatRoomIdbyUserId(String a, String b) {
+    // if (a.substring(0, 1).codeUnitAt(0) > b.substring(0, 1).codeUnitAt(0)) {
+    //   return "$b\_$a";
+    // } else {
+    //   return "$a\_$b";
+    // }
+
+    if (a.hashCode <= b.hashCode) {
+      return '$a-$b';
+    } else {
+      return '$b-$a';
+    }
+  }
+
+  // Stream<QuerySnapshot> messages;
+  getAndSetMessages() async {
+    messages = await DatabaseMethods().getChatRoomMessages(chatRoomId);
+    setState(() {});
+  }
+
+  onLaunch() async {
+    getMyInfoFromShardPrefs();
+  }
 
   @override
   void initState() {
     super.initState();
-    textController1 = TextEditingController();
+    onLaunch();
+  }
+
+  sendMessage(bool sendClicked) async {
+    String? myUsername = await SharedPreferenceHelper().getUsername();
+    String? myProfilePic = await SharedPreferenceHelper().getUserProfileUrl();
+    if (textController1.text.isNotEmpty) {
+      String message = textController1.text;
+      var lastMessageTimeStamp = DateTime.now();
+      Map<String, dynamic> messageInforMap = {
+        "message": message,
+        "sentBy": myUsername,
+        "time sent": lastMessageTimeStamp,
+        "imageUrl": myProfilePic,
+      };
+      //messageId
+      if (messageId.isEmpty) {
+        messageId = uuid.v1();
+      }
+      DatabaseMethods().addMessage(chatRoomId, messageId, messageInforMap).then(
+        (value) {
+          Map<String, dynamic> lastMessageInforMap = {
+            "last message": message,
+            "last message sent by": myUsername,
+            "last message send time": lastMessageTimeStamp,
+          };
+          DatabaseMethods().updateLastMessageSent(chatRoomId, lastMessageInforMap, messageId);
+          if (sendClicked) {
+            // remove text typed
+            textController1.text = "";
+            //make message id blank
+            messageId = "";
+          }
+        },
+      );
+    }
   }
 
   @override
@@ -29,22 +108,24 @@ class _ChatConversationScreenState extends State<ChatConversationScreen> {
         // automaticallyImplyLeading: true,
         backgroundColor: backgroundColor,
         elevation: 0,
-        title: const Text(
-          "Username",
-          style: TextStyle(
+        title: Text(
+          widget.user.displayName,
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
           ),
         ),
 
-        actions: const [
+        actions: [
           Padding(
             padding: EdgeInsets.only(right: 12.0),
             child: Center(
-              child: Icon(
+                child: IconButton(
+              icon: const Icon(
                 Icons.call,
                 size: 26,
               ),
-            ),
+              onPressed: () => urlLauncher.launch("tel:${widget.user.phoneNumber}"),
+            )),
           )
         ],
       ),
@@ -59,41 +140,85 @@ class _ChatConversationScreenState extends State<ChatConversationScreen> {
                 color: fgColor,
               ),
             ),
-            SingleChildScrollView(
-              child: Container(
-                margin: const EdgeInsets.only(bottom: 55.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const ChatsConversationScreenSentMessageCard(
-                      textColor: Colors.black,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(20),
-                        bottomLeft: Radius.circular(20),
-                        bottomRight: Radius.circular(20),
-                      ),
-                      message: "message from my friend",
-                      cardColor: Colors.white,
-                      profileUrl:
-                          'https://images.unsplash.com/photo-1591465709469-5de113a071cc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1504&q=80',
+            StreamBuilder(
+              stream: messages,
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if (snapshot.hasError) {
+                  return const Text('Something went wrong');
+                }
+
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Text("Loading");
+                }
+                if (snapshot.hasData) {
+                  return ListView(
+                    children: snapshot.data!.docs.map<Widget>((DocumentSnapshot documentSnapshot) {
+                      return ChatsConversationScreenSentMessageCard(
+                        textColor: documentSnapshot["sentBy"] != myUsername ? Colors.black : Colors.white,
+                        mainAxisAlignment:
+                            documentSnapshot["sentBy"] != myUsername ? MainAxisAlignment.start : MainAxisAlignment.end,
+                        borderRadius: documentSnapshot["sentBy"] != myUsername
+                            ? const BorderRadius.only(
+                                topRight: Radius.circular(20),
+                                bottomLeft: Radius.circular(20),
+                                bottomRight: Radius.circular(20),
+                              )
+                            : const BorderRadius.only(
+                                topLeft: Radius.circular(20),
+                                bottomLeft: Radius.circular(20),
+                                bottomRight: Radius.circular(20),
+                              ),
+                        message: documentSnapshot["message"],
+                        cardColor: documentSnapshot["sentBy"] != myUsername ? Colors.white : backgroundColor,
+                        profileUrl: documentSnapshot["sentBy"] != myUsername ? widget.user.photoUrl : "",
+                      );
+                    }).toList(),
+                  );
+                } else {
+                  return Center(
+                    child: CircularProgressIndicator(
+                      color: backgroundColor,
+                      semanticsValue: snapshot.data,
                     ),
-                    ChatsConversationScreenSentMessageCard(
-                       textColor: Colors.white,
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        bottomLeft: Radius.circular(20),
-                        bottomRight: Radius.circular(20),
-                      ),
-                      message: "message from me",
-                      cardColor: backgroundColor,
-                    )
-                  ],
-                ),
-              ),
+                  );
+                }
+              },
             ),
+            // SingleChildScrollView(
+            //   child: Container(
+            //     margin: const EdgeInsets.only(bottom: 55.0),
+            //     child: Column(
+            //       mainAxisSize: MainAxisSize.max,
+            //       crossAxisAlignment: CrossAxisAlignment.start,
+            //       children: [
+            //         widget.user.userId != currentUser!.uid
+            //             ? ChatsConversationScreenSentMessageCard(
+            //                 textColor: Colors.black,
+            //                 mainAxisAlignment: MainAxisAlignment.start,
+            //                 borderRadius: const BorderRadius.only(
+            //                   topRight: Radius.circular(20),
+            //                   bottomLeft: Radius.circular(20),
+            //                   bottomRight: Radius.circular(20),
+            //                 ),
+            //                 message: "message from my friend",
+            //                 cardColor: Colors.white,
+            //                 profileUrl: widget.user.photoUrl,
+            //               )
+            //             : ChatsConversationScreenSentMessageCard(
+            //                 textColor: Colors.white,
+            //                 mainAxisAlignment: MainAxisAlignment.end,
+            //                 borderRadius: const BorderRadius.only(
+            //                   topLeft: Radius.circular(20),
+            //                   bottomLeft: Radius.circular(20),
+            //                   bottomRight: Radius.circular(20),
+            //                 ),
+            //                 message: "message from me",
+            //                 cardColor: backgroundColor,
+            //               )
+            //       ],
+            //     ),
+            //   ),
+            // ),
             Align(
               alignment: const Alignment(0, 1),
               child: Container(
@@ -124,15 +249,17 @@ class _ChatConversationScreenState extends State<ChatConversationScreen> {
                           hintText: "Type message",
                           textInputType: TextInputType.multiline,
                           controller: textController1,
-                          onSubmitField: () {},
+                          onSubmitField: () {
+                            // sendMessage(true);
+                          },
                           onFieldTap: () {},
                           prefixIcon: null,
                           onChanged: (_) => setState(() {}),
                           borderSideColor: const Color(0x00000000),
                           clearIconColor: const Color(0xFF757575),
-                          expands: true,
-                          minlines: null,
-                          maxlines: null,
+                          // expands: true,
+                          minlines: 1,
+                          maxlines: 200,
                         ),
                       ),
                     ),
@@ -146,10 +273,13 @@ class _ChatConversationScreenState extends State<ChatConversationScreen> {
                           // borderRadius: BorderRadius.circular(50),
                           shape: BoxShape.circle,
                         ),
-                        child: const Icon(
-                          Icons.send,
-                          color: Colors.white,
-                          size: 24,
+                        child: IconButton(
+                          icon: const Icon(
+                            Icons.send,
+                            color: Colors.white,
+                            size: 24,
+                          ),
+                          onPressed: () => sendMessage(true),
                         ),
                       ),
                     )

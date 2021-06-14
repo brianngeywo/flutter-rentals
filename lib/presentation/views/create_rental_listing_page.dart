@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:homeland/constants/my_constants.dart';
+import 'package:homeland/data/services/auth.dart';
 import 'package:homeland/presentation/reusables/create_rental_form_field.dart';
+import 'package:uuid/uuid.dart';
 
 class CreateRentalListingPage extends StatefulWidget {
   const CreateRentalListingPage({Key? key}) : super(key: key);
@@ -23,6 +25,7 @@ class _CreateRentalListingPageState extends State<CreateRentalListingPage> {
   FocusNode focusNode3 = FocusNode();
   FocusNode focusNode4 = FocusNode();
   FocusNode focusNode5 = FocusNode();
+   int _ratingController = 0;
 
   @override
   void initState() {
@@ -84,6 +87,29 @@ class _CreateRentalListingPageState extends State<CreateRentalListingPage> {
                       ),
                     ),
                   ),
+                  DropdownButtonFormField(
+                    hint: const Text("select type of listing"),
+                    // onChanged: AuthMethods().signOut(),
+                    items: const [
+                      DropdownMenuItem(child: Text("for sale")),
+                      DropdownMenuItem(child: Text("for sale")),
+                    ],
+                  ),
+                   DropdownButtonFormField<int>(
+                    value: _ratingController,
+                    items: [1, 2, 3, 4, 5]
+                        .map((label) => DropdownMenuItem(
+                              child: Text(label.toString()),
+                              value: label,
+                            ))
+                        .toList(),
+                    hint: Text('Rating'),
+                    onChanged: (value) {
+                      setState(() {
+                        _ratingController = value!;
+                      });
+                    },
+                  ),
                   createRentalFormFieldsWidget(
                       context, 40, 'place location', TextInputType.streetAddress, textController1, focusNode),
                   createRentalFormFieldsWidget(
@@ -107,7 +133,6 @@ class _CreateRentalListingPageState extends State<CreateRentalListingPage> {
                         width: 100,
                         child: MaterialButton(
                           onPressed: () {
-                            print('Button pressed ...');
                           },
                           color: Colors.teal,
                           textColor: Colors.white,

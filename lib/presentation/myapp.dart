@@ -16,9 +16,9 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       home: 
-      // initScreen == 1 ? 
+      initScreen == 1 ? 
       const MyHomePage() 
-      // : const FirstScreen(),
+      : FirstScreen(),
     );
   }
 }

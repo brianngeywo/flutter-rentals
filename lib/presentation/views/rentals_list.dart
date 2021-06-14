@@ -4,9 +4,9 @@ import 'package:homeland/constants/my_constants.dart';
 import 'package:homeland/data/models/rental.dart';
 import 'package:homeland/presentation/myhomepage.dart';
 import 'package:homeland/presentation/reusables/rental_main_list_card.dart';
+import 'package:homeland/presentation/views/add_phone_number.dart';
 import 'package:homeland/presentation/views/full_rental_page.dart';
 import 'package:homeland/presentation/views/search_place_page.dart';
-import 'package:homeland/services/database.dart';
 
 class RentalsListPage extends StatefulWidget {
   @override
@@ -14,7 +14,7 @@ class RentalsListPage extends StatefulWidget {
 }
 
 class _RentalsListPageState extends State<RentalsListPage> {
-  final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance.collection('rentals').snapshots();
+  final Stream<QuerySnapshot> _tentalsStream = FirebaseFirestore.instance.collection('rentals').snapshots();
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,7 @@ class _RentalsListPageState extends State<RentalsListPage> {
         ],
       ),
       body: StreamBuilder<QuerySnapshot>(
-        stream: _usersStream,
+        stream: _tentalsStream,
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             return const Text('Something went wrong');

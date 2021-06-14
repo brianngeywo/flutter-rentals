@@ -7,6 +7,7 @@ class Rental {
   String photoUrl = '';
   String bedrooms = '';
   String bathrooms = '';
+  String phoneNumber = '';
   bool wifi = false;
   String price;
   Rental({
@@ -16,6 +17,7 @@ class Rental {
     required this.photoUrl,
     required this.bedrooms,
     required this.bathrooms,
+    this.phoneNumber = '',
     required this.wifi,
     required this.price,
   });
@@ -30,6 +32,7 @@ class Rental {
       bathrooms: doc['bathrooms'],
       wifi: doc['wifi'],
       price: doc['price'],
+      phoneNumber: doc['phone number'],
     );
   }
 

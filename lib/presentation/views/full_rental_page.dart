@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:homeland/constants/my_constants.dart';
 import 'package:homeland/data/models/rental.dart';
 import 'package:homeland/presentation/reusables/contained_photo.dart';
+import 'package:url_launcher/url_launcher.dart' as urlLauncher;
 
 class FullRentalPage extends StatefulWidget {
   const FullRentalPage({
@@ -37,9 +38,7 @@ class _FullRentalPageState extends State<FullRentalPage> {
           children: [
             FloatingActionButton.extended(
               heroTag: "call",
-              onPressed: () {
-                print('FloatingActionButton pressed ...');
-              },
+              onPressed: () => urlLauncher.launch("tel:${widget.rental.phoneNumber}"),
               backgroundColor: const Color(0xFF52996A),
               icon: const Icon(
                 Icons.call,
@@ -50,7 +49,7 @@ class _FullRentalPageState extends State<FullRentalPage> {
             FloatingActionButton.extended(
               heroTag: "message",
               onPressed: () {
-                print('FloatingActionButton pressed ...');
+                urlLauncher.launch("sms:${widget.rental.phoneNumber}");
               },
               backgroundColor: const Color(0xFF52996A),
               icon: const Icon(
@@ -206,7 +205,7 @@ class _FullRentalPageState extends State<FullRentalPage> {
                     ),
                   ),
                 ),
-                 Container(
+                Container(
                   margin: const EdgeInsets.only(top: 15, left: 15, bottom: 5, right: 15),
                   child: const Text(
                     'Photos',

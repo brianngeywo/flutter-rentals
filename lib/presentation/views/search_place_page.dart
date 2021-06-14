@@ -6,7 +6,7 @@ import 'package:homeland/presentation/views/full_rental_page.dart';
 
 class SearchPlace extends SearchDelegate<Rental?> {
   @override
-  List<Widget>? buildActions(BuildContext context) {
+  List<Widget> buildActions(BuildContext context) {
     return [
       IconButton(
         onPressed: () => query = "",
@@ -16,7 +16,7 @@ class SearchPlace extends SearchDelegate<Rental?> {
   }
 
   @override
-  Widget? buildLeading(BuildContext context) {
+  Widget buildLeading(BuildContext context) {
     return IconButton(
       onPressed: () {
         close(context, null);

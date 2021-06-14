@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+int? i;
 
-Widget profilePageAccountOptionsListTile(BuildContext context, String title, Icon action) {
+void main() {
+  print(i?.isEven ?? true);
+}
+Widget profilePageAccountOptionsListTile(BuildContext context, String? title, Widget? action) {
   return Container(
     width: MediaQuery.of(context).size.width,
     height: 40,
@@ -15,7 +19,7 @@ Widget profilePageAccountOptionsListTile(BuildContext context, String title, Ico
         Padding(
           padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
           child: Text(
-            title,
+            title ?? "not available",
           ),
         ),
         Padding(padding: const EdgeInsets.fromLTRB(0, 0, 20, 0), child: action)

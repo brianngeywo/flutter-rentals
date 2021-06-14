@@ -4,8 +4,6 @@ import 'package:homeland/constants/my_constants.dart';
 import 'package:homeland/data/models/rental.dart';
 import 'package:homeland/presentation/myhomepage.dart';
 import 'package:homeland/presentation/reusables/rental_main_list_card.dart';
-import 'package:homeland/presentation/views/full_rental_page.dart';
-import 'package:homeland/services/database.dart';
 
 class RentalsResultsListPage extends StatelessWidget {
   final String searchTerm;
@@ -52,11 +50,11 @@ class RentalsResultsListPage extends StatelessWidget {
         stream: _usersStream,
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
-            return Text('Something went wrong');
+            return const Text('Something went wrong');
           }
 
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Text("Loading");
+            return const Text("Loading");
           }
        
             return ListView(
