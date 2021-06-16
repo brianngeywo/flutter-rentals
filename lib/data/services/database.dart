@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:homeland/data/services/auth.dart';
+import 'package:homeland/data/models/user.dart';
 import 'package:homeland/presentation/myhomepage.dart';
 import 'package:homeland/presentation/views/add_phone_number.dart';
 import 'package:uuid/uuid.dart';
@@ -10,9 +12,11 @@ class DatabaseMethods {
   final uuid = const Uuid().v1();
   addUserinfoToDatabase(BuildContext context, String userId, Map<String, dynamic> userInformationMap) {
     _firestore.collection("users").doc(userId).set(userInformationMap).then((_) {
-     checkIfPhoneFieldExists(context, userId);
+      checkIfPhoneFieldExists(context, userId);
     });
   }
+
+
   checkIfPhoneFieldExists(BuildContext context, String userId) {
     FirebaseFirestore.instance.collection('users').doc(userId).get().then((DocumentSnapshot documentSnapshot) {
       if (documentSnapshot["phone number"] == "" || documentSnapshot["public name"] == "") {
@@ -33,6 +37,7 @@ class DatabaseMethods {
       }
     });
   }
+
   Future addMessage(String chatRoomId, String messageId, Map<String, dynamic> messageInforMap) {
     return FirebaseFirestore.instance
         .collection("chatrooms")

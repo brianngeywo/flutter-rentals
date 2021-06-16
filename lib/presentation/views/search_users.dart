@@ -9,7 +9,7 @@ class ChatsSearch extends SearchDelegate {
   @override
   List<Widget> buildActions(BuildContext context) {
     return [
-        IconButton(
+      IconButton(
         onPressed: () => query = "",
         icon: const Icon(Icons.clear),
       ),
@@ -24,7 +24,6 @@ class ChatsSearch extends SearchDelegate {
       },
       icon: const BackButton(),
     );
-    
   }
 
   @override
@@ -63,7 +62,7 @@ class ChatsSearch extends SearchDelegate {
               ? const Text("no results...")
               : ListView(
                   children: snapshot.data!.docs.map((DocumentSnapshot documentSnapshot) {
-                    User user = User.fromFirestore(documentSnapshot);
+                    UserModel user = UserModel.fromFirestore(documentSnapshot);
                     return user.userId != currentUser?.uid
                         ? InkWell(
                             onTap: () => Navigator.push(
@@ -124,8 +123,8 @@ class ChatsSearch extends SearchDelegate {
               ? const Text("no results...")
               : ListView(
                   children: snapshot.data!.docs.map((DocumentSnapshot documentSnapshot) {
-                    User user = User.fromFirestore(documentSnapshot);
-                    return  user.userId != currentUser?.uid
+                    UserModel user = UserModel.fromFirestore(documentSnapshot);
+                    return user.userId != currentUser?.uid
                         ? InkWell(
                             onTap: () => Navigator.push(
                               context,

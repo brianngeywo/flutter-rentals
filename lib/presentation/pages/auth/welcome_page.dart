@@ -12,17 +12,12 @@ class WelcomePage extends StatelessWidget {
     var screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SizedBox(
-        height: screenHeight,
-        width: screenWidth,
-        child: Stack(
+      body: Stack(
           children: [
-       Image.asset(
-                "assets/images/bg.jpeg",
-
+            Image.asset("assets/images/bg.jpeg",
                 fit: BoxFit.cover,
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
+                height: screenHeight,
+                width: screenWidth,
                 colorBlendMode: BlendMode.darken,
                 color: Colors.black26),
             Positioned(
@@ -75,9 +70,7 @@ class WelcomePage extends StatelessWidget {
                     onPressed: () => AuthMethods().handleSignIn(context).then(
                           (value) => Navigator.pushReplacement(
                             context,
-                            MaterialPageRoute(
-                              builder: (context) => const MyHomePage()
-                            ),
+                            MaterialPageRoute(builder: (context) => const MyHomePage()),
                           ),
                         ),
                     child: const Padding(
@@ -98,7 +91,7 @@ class WelcomePage extends StatelessWidget {
             ),
           ],
         ),
-      ),
+      
     );
   }
 }

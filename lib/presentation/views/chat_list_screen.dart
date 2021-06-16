@@ -72,7 +72,6 @@ class _ChatsListScreenState extends State<ChatsListScreen> {
         stream: usersStream,
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasData && snapshot.data != null) {
-            print(snapshot.data);
             if (snapshot.hasError) {
               return const Text('Something went wrong');
             }
@@ -83,7 +82,7 @@ class _ChatsListScreenState extends State<ChatsListScreen> {
 
             return ListView(
               children: snapshot.data!.docs.map((DocumentSnapshot document) {
-                User user = User.fromFirestore(document);
+                UserModel user = UserModel.fromFirestore(document);
 
                 return user.userId != currentUser?.uid
                     ? InkWell(

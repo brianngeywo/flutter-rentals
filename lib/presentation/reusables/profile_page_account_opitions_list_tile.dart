@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-int? i;
 
-void main() {
-  print(i?.isEven ?? true);
-}
 Widget profilePageAccountOptionsListTile(BuildContext context, String? title, Widget? action) {
   return Container(
     width: MediaQuery.of(context).size.width,

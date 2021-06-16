@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:homeland/data/models/user.dart';
 import 'package:homeland/data/services/database.dart';
 import 'package:homeland/helper_functions/sharedpref_helper.dart';
 import 'package:homeland/presentation/pages/auth/welcome_page.dart';
@@ -39,7 +40,7 @@ class AuthMethods {
         "location": "",
         "public name": "",
       };
-      DatabaseMethods().addUserinfoToDatabase(context,userDetails.uid, userInformationMap);
+      DatabaseMethods().addUserinfoToDatabase(context, userDetails.uid, userInformationMap);
     }
     // Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const MyHomePage()));
     return userCredential!;
@@ -54,6 +55,4 @@ class AuthMethods {
           ),
         );
   }
-
-
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:homeland/data/models/user.dart';
 import 'package:homeland/presentation/reusables/contained_photo.dart';
 
-Widget chatsListCard(User user) {
+Widget chatsListCard(UserModel user) {
   return ListTile(
     leading: containedPhoto(
       50,

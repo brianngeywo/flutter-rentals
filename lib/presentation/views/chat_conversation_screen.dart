@@ -12,7 +12,7 @@ import 'package:url_launcher/url_launcher.dart' as urlLauncher;
 
 class ChatConversationScreen extends StatefulWidget {
   const ChatConversationScreen({Key? key, required this.user}) : super(key: key);
-  final User user;
+  final UserModel user;
 
   @override
   _ChatConversationScreenState createState() => _ChatConversationScreenState();
@@ -117,7 +117,7 @@ class _ChatConversationScreenState extends State<ChatConversationScreen> {
 
         actions: [
           Padding(
-            padding: EdgeInsets.only(right: 12.0),
+            padding:const EdgeInsets.only(right: 12.0),
             child: Center(
                 child: IconButton(
               icon: const Icon(
